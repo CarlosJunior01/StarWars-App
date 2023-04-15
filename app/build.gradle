@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
+    id("kotlin-parcelize")
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.carlosjunior.starwarsapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.carlosjunior.starwarsapp"
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", '"https://swapi.dev/api/"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+ext {
+    circle_version = "3.1.0"
+    glide_version = "4.12.0"
+    lottie_version = "5.2.0"
+    hilt_version = "2.41"
+    fragment_version = '1.4.1'
+    nav_version = "2.4.1"
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // CircleImageview
+    implementation "de.hdodenhof:circleimageview:$circle_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    // Paging3
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Unit tests
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+    // Instrumentation tests
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Modules
+    implementation project(':core')
+}
