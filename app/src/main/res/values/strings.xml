@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Star Wars App</string>
+
+    <!-- Error Screen -->
+    <string name="generic_error_title">Ops!</string>
+    <string name="generic_error_description">Aconteceu algum erro. \nPor favor tente novamente.</string>
+    <string name="generic_error_try_again">Tentar Novamente</string>
+
+    <!-- Home Screen -->
+    <string name="search_hint_description">Search your character</string>
+
+    <!-- Details Person Screen -->
+    <string name="add_list">Add List</string>
+    <string name="gender">Gender: %s</string>
+    <string name="height">Height: %s</string>
+    <string name="birth_year">Birth Year: %s</string>
+    <string name="hair_color">Hair color: %s</string>
+    <string name="share_person">"Person Name: %s \n\n Link Person: %s</string>
+
+    <!-- Details Movie Screen -->
+    <string name="director">Director by %s</string>
+    <string name="producer">Producer by %s</string>
+    <string name="release_date">Release Date: %s</string>
+    <string name="share_movie">"Movie Name: %s \n\n Link Movie: %s \n\n Description Movie: %s</string>
+
+    <!-- Item Load More State -->
+    <string name="error_loading_more_try_again">Erro ao tentar carregar a próxima página. Tente novamente</string>
+
+    <!-- Accessibility Description -->
+    <string name="accessibility_background_image">Logo Star Wars</string>
+    <string name="accessibility_search_description">Procure seu personagem</string>
+    <string name="accessibility_return_button">botão voltar</string>
+    <string name="accessibility_share_button">botão compartilhar</string>
+    <string name="accessibility_favorite_button">botão favoritar</string>
+
+</resources>
