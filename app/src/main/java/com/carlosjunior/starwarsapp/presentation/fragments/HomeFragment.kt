@@ -48,18 +48,6 @@ class HomeFragment : Fragment() {
 
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        delayTime()
-//    }
-//
-//    private fun delayTime() {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            delay(5000L)
-//
-//        }
-//    }
-
     private fun observeStateLoad() {
         lifecycleScope.launchWhenCreated {
             personsAdapter.loadStateFlow.collectLatest { loadState ->
