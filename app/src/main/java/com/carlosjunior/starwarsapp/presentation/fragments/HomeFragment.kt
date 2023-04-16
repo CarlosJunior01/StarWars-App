@@ -10,16 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.carlosjunior.core.domain.model.Movies
-import com.carlosjunior.core.domain.model.Persons
 import com.carlosjunior.starwarsapp.R
 import com.carlosjunior.starwarsapp.databinding.FragmentHomeBinding
 import com.carlosjunior.starwarsapp.presentation.adapters.LoadStateAdapter
 import com.carlosjunior.starwarsapp.presentation.adapters.movies.MoviesAdapter
 import com.carlosjunior.starwarsapp.presentation.adapters.persons.PersonsAdapter
+import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
+import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import com.carlosjunior.starwarsapp.presentation.viewmodels.HomeViewModel
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StateMovieResponse.*
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.*
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StateMovieResponse.StateMoviesSuccess
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsSuccess
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -61,9 +61,9 @@ class HomeFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             moviesAdapter.loadStateFlow.collectLatest { loadState ->
                 when (loadState.refresh) {
-                    is LoadState.Loading -> switchFlipperChild(SHOW_CHILD_ZERO)
-                    is LoadState.NotLoading -> switchFlipperChild(SHOW_CHILD_ONE)
-                    is LoadState.Error -> switchFlipperChild(SHOW_CHILD_TWO)
+                    is LoadState.Loading -> binding.homeScreen.recyclerViewMovies.visibility = View.GONE
+                    is LoadState.NotLoading -> binding.homeScreen.recyclerViewMovies.visibility = View.VISIBLE
+                    is LoadState.Error -> binding.homeScreen.recyclerViewMovies.visibility = View.GONE
                 }
             }
         }
@@ -134,13 +134,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateSearchFragment() = findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-    private fun navigatePersonsDetailsFragment(persons: Persons, pos: Int) = findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsPersonsFragment(persons, pos))
-    private fun navigateMoviesDetailsFragment(movies: Movies, pos: Int) = findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsMoviesFragment(movies, pos))
+    private fun navigatePersonsDetailsFragment(persons: PersonsViewObject, pos: Int) =
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsPersonsFragment(persons, pos))
+    private fun navigateMoviesDetailsFragment(movies: MoviesViewObject, pos: Int) =
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsMoviesFragment(movies, pos))
 
     companion object {
         private const val SHOW_CHILD_ZERO = 0
         private const val SHOW_CHILD_ONE = 1
         private const val SHOW_CHILD_TWO = 2
-        private const val ERROR_MESSAGE = "Error Message"
+        private const val ERROR_MESSAGE = ""
     }
 }
