@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.carlosjunior.core.domain.model.Persons
 import com.carlosjunior.starwarsapp.R
 import com.carlosjunior.starwarsapp.databinding.RecyclerPersonItemListBinding
+import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 
 class PersonsViewHolder(
     itemListBinding: RecyclerPersonItemListBinding
@@ -17,7 +17,7 @@ class PersonsViewHolder(
     private val personGender = itemListBinding.personGender
     private val personImage = itemListBinding.personImage
 
-    fun bind(persons: Persons, position: Int) {
+    fun bind(persons: PersonsViewObject, position: Int) {
         val itemLoad = "$URL_IMAGE${position + NUMBER_ONE}$FORMAT"
         personName.text = persons.name
         personYear.text = persons.birthYear

@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.carlosjunior.core.domain.model.Movies
 import com.carlosjunior.starwarsapp.R
 import com.carlosjunior.starwarsapp.databinding.RecyclerMovieItemListBinding
+import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 
 class MoviesViewHolder(
     itemListBinding: RecyclerMovieItemListBinding
@@ -17,7 +17,7 @@ class MoviesViewHolder(
     private val movieDirector = itemListBinding.directorName
     private val movieImage = itemListBinding.movieImage
 
-    fun bind(movies: Movies, position: Int) {
+    fun bind(movies: MoviesViewObject, position: Int) {
         val itemLoad = "$URL_IMAGE${position + NUMBER_ONE}$FORMAT"
         movieName.text = movies.title
         movieDate.text = movies.releaseDate

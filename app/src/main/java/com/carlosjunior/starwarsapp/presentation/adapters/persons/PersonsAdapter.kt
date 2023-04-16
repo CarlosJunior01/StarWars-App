@@ -3,11 +3,11 @@ package com.carlosjunior.starwarsapp.presentation.adapters.persons
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.carlosjunior.core.domain.model.Persons
+import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 
 class PersonsAdapter(
-    private val onItemClick: (Persons, Int) -> Unit
-): PagingDataAdapter<Persons, PersonsViewHolder>(diffCallback) {
+    private val onItemClick: (PersonsViewObject, Int) -> Unit
+): PagingDataAdapter<PersonsViewObject, PersonsViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonsViewHolder {
         return PersonsViewHolder.create(parent)
@@ -20,17 +20,17 @@ class PersonsAdapter(
     }
 
     companion object {
-        private val diffCallback = object: DiffUtil.ItemCallback<Persons>() {
+        private val diffCallback = object: DiffUtil.ItemCallback<PersonsViewObject>() {
             override fun areItemsTheSame(
-                oldItem: Persons,
-                newItem: Persons
+                oldItem: PersonsViewObject,
+                newItem: PersonsViewObject
             ): Boolean {
                 return oldItem.name == newItem.name
             }
 
             override fun areContentsTheSame(
-                oldItem: Persons,
-                newItem: Persons
+                oldItem: PersonsViewObject,
+                newItem: PersonsViewObject
             ): Boolean {
                 return oldItem.name == newItem.name
             }
