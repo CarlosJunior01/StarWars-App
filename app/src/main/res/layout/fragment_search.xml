@@ -18,17 +18,80 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/btn_return_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8_dp"
+        android:layout_marginTop="@dimen/size_16_dp"
+        android:contentDescription="@string/accessibility_return_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_left" />
+
+    <ImageView
+        android:id="@+id/img_person_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_8_dp"
+        android:elevation="@dimen/size_4_dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_filter_alt_24"
+        app:layout_constraintBottom_toBottomOf="@+id/button_persons"
+        app:layout_constraintEnd_toEndOf="@+id/button_persons"
+        app:layout_constraintTop_toTopOf="@+id/button_persons" />
+
+    <Button
+        android:id="@+id/button_persons"
+        android:layout_width="@dimen/size_0_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/size_16_dp"
+        android:layout_marginStart="@dimen/size_16_dp"
+        android:layout_marginEnd="@dimen/size_2_dp"
+        android:backgroundTint="@color/gray_1212"
+        android:text="@string/button_persons"
+        app:layout_constraintEnd_toStartOf="@+id/button_movies"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_star_wars_logo" />
+
+    <ImageView
+        android:id="@+id/img_movie_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_8_dp"
+        android:elevation="@dimen/size_4_dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_filter_alt_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/button_movies"
+        app:layout_constraintEnd_toEndOf="@+id/button_movies"
+        app:layout_constraintTop_toTopOf="@+id/button_movies" />
+
+    <Button
+        android:id="@+id/button_movies"
+        android:layout_width="@dimen/size_0_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_2_dp"
+        android:layout_marginEnd="@dimen/size_16_dp"
+        android:backgroundTint="@color/gray_1212"
+        android:text="@string/button_movies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_persons"
+        app:layout_constraintTop_toTopOf="@+id/button_persons" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/search_bar_container"
         style="@style/SearchButtonDefault"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_24_dp"
+        android:layout_marginVertical="@dimen/size_16_dp"
         android:layout_marginHorizontal="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_search_description"
+        android:contentDescription="@string/accessibility_search_default_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_star_wars_logo">
+        app:layout_constraintTop_toBottomOf="@+id/button_persons">
 
         <ImageView
             android:id="@+id/image_search_bar"
@@ -46,7 +109,7 @@
         <EditText
             android:id="@+id/edit_text_search_bar"
             style="@style/EditTextAppearanceBold16"
-            android:hint="@string/search_hint_description"
+            android:hint="@string/search_hint_persons_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_search_bar"
@@ -56,16 +119,32 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_search_persons"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/size_24_dp"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_container"
         tools:itemCount="1"
+        android:elevation="@dimen/size_2_dp"
         tools:listitem="@layout/recycler_person_item_list" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_search_movies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24_dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_container"
+        tools:itemCount="1"
+        android:elevation="@dimen/size_2_dp"
+        tools:visibility="invisible"
+        tools:listitem="@layout/recycler_movie_item_list" />
 
     <ImageView
         android:id="@+id/image_background"

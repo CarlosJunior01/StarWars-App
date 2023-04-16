@@ -45,7 +45,7 @@
         <TextView
             android:id="@+id/text_search_bar"
             style="@style/TextAppearanceBold16"
-            android:text="@string/search_hint_description"
+            android:text="@string/search_hint_persons_description"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

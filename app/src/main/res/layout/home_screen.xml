@@ -1,93 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_2020">
-
-    <ImageView
-        android:id="@+id/img_star_wars_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/size_48_dp"
-        android:layout_marginTop="@dimen/size_24_dp"
-        android:contentDescription="@string/accessibility_background_image"
-        android:scaleType="fitCenter"
-        android:src="@drawable/star_wars_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@color/gray_2020"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_bar_container"
-        style="@style/SearchButtonDefault"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_search_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_star_wars_logo">
+        android:layout_height="match_parent"
+        android:background="@color/gray_2020">
 
         <ImageView
-            android:id="@+id/image_search_bar"
+            android:id="@+id/img_star_wars_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:importantForAccessibility="no"
-            android:padding="@dimen/size_4_dp"
-            android:src="@drawable/ic_search_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/text_search_bar"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_height="@dimen/size_48_dp"
+            android:layout_marginTop="@dimen/size_24_dp"
+            android:contentDescription="@string/accessibility_background_image"
+            android:scaleType="fitCenter"
+            android:src="@drawable/star_wars_logo"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_search_bar"
-            style="@style/TextAppearanceBold16"
-            android:text="@string/search_hint_description"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/search_bar_container"
+            style="@style/SearchButtonDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_16_dp"
+            android:contentDescription="@string/accessibility_search_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_search_bar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_star_wars_logo">
+
+            <ImageView
+                android:id="@+id/image_search_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:padding="@dimen/size_4_dp"
+                android:src="@drawable/ic_search_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text_search_bar"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_search_bar"
+                style="@style/TextAppearanceBold16"
+                android:text="@string/search_hint_persons_description"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_search_bar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_persons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_24_dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar_container"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_person_item_list" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_movies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/size_2_dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_persons"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_person_item_list" />
+
+        <TextView
+            android:id="@+id/text_last_viewed"
+            style="@style/TextAppearanceBold16"
+            android:layout_marginStart="@dimen/size_16_dp"
+            android:text="@string/last_viewed_description"
+            android:textColor="@color/gray_7070"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_movies" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_last_viewed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/size_2_dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_last_viewed"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_person_item_list" />
+
+        <ImageView
+            android:id="@+id/image_background"
+            android:layout_width="@dimen/size_250_dp"
+            android:layout_height="@dimen/size_250_dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:src="@drawable/star_wars_image_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_persons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/size_24_dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar_container"
-        tools:itemCount="2"
-        tools:listitem="@layout/recycler_person_item_list" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_movies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:elevation="@dimen/size_2_dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view_persons"
-        tools:itemCount="2"
-        tools:listitem="@layout/recycler_person_item_list" />
-
-    <ImageView
-        android:id="@+id/image_background"
-        android:layout_width="@dimen/size_250_dp"
-        android:layout_height="@dimen/size_250_dp"
-        android:importantForAccessibility="no"
-        android:scaleType="centerCrop"
-        android:src="@drawable/star_wars_image_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
