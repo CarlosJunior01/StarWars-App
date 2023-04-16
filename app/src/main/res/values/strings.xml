@@ -7,7 +7,7 @@
     <string name="generic_error_try_again">Tentar Novamente</string>
 
     <!-- Home Screen -->
-    <string name="search_hint_description">Search your character</string>
+    <string name="last_viewed_description">Últimos visualizados</string>
 
     <!-- Details Person Screen -->
     <string name="add_list">Add List</string>
@@ -23,12 +23,21 @@
     <string name="release_date">Release Date: %s</string>
     <string name="share_movie">"Movie Name: %s \n\n Link Movie: %s \n\n Description Movie: %s</string>
 
+    <!-- Details Movie Screen -->
+    <string name="button_persons">Personagens</string>
+    <string name="button_movies">Filmes</string>
+
+    <!-- Search Screen -->
+    <string name="search_hint_persons_description">Search your characters</string>
+    <string name="search_hint_movies_description">Search your movies</string>
+
     <!-- Item Load More State -->
     <string name="error_loading_more_try_again">Erro ao tentar carregar a próxima página. Tente novamente</string>
 
     <!-- Accessibility Description -->
     <string name="accessibility_background_image">Logo Star Wars</string>
     <string name="accessibility_search_description">Procure seu personagem</string>
+    <string name="accessibility_search_default_description">Procure seu personagem ou filme favorito</string>
     <string name="accessibility_return_button">botão voltar</string>
     <string name="accessibility_share_button">botão compartilhar</string>
     <string name="accessibility_favorite_button">botão favoritar</string>
