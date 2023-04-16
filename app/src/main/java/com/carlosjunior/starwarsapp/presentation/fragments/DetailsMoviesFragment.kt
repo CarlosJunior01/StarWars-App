@@ -11,7 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.carlosjunior.starwarsapp.R
 import com.carlosjunior.starwarsapp.databinding.FragmentMoviesDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsMoviesFragment : Fragment() {
 
     private val arguments: DetailsMoviesFragmentArgs by navArgs()
