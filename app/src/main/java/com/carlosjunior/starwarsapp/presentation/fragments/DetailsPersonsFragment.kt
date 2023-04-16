@@ -49,8 +49,9 @@ class DetailsPersonsFragment : Fragment() {
 
     private fun clickListeners() {
         with(binding) {
-            btnReturnButton.setOnClickListener { findNavController().popBackStack() }
+            btnReturnButton.setOnClickListener { navigateHomeFragment() }
             btnShareButton.setOnClickListener { shareAction() }
+            searchBarContainer.setOnClickListener { navigateSearchFragment() }
         }
     }
 
@@ -61,6 +62,9 @@ class DetailsPersonsFragment : Fragment() {
         shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_person, arguments.persons.name, arguments.persons.url))
         startActivity(Intent.createChooser(shareIntent, getString(R.string.app_name)))
     }
+
+    private fun navigateHomeFragment() = findNavController().navigate(R.id.action_detailsPersonsFragment_to_homeFragment)
+    private fun navigateSearchFragment() = findNavController().navigate(R.id.action_detailsPersonsFragment_to_searchFragment)
 
     companion object {
         private const val NUMBER_ONE = 1

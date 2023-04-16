@@ -108,7 +108,7 @@ class SearchFragment : Fragment() {
         var searchDefaultType = true
 
         with(binding) {
-            btnReturnButton.setOnClickListener { findNavController().popBackStack() }
+            btnReturnButton.setOnClickListener { navigateHomeFragment() }
 
             buttonPersons.setOnClickListener {
                 searchDefaultType = true
@@ -149,6 +149,7 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun navigateHomeFragment() = findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
     private fun navigatePersonsDetailsFragment(persons: PersonsViewObject, pos: Int) =
         findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailsPersonsFragment(persons, pos))
     private fun navigateMoviesDetailsFragment(movies: MoviesViewObject, pos: Int) =
