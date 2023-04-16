@@ -12,6 +12,16 @@ interface StarWarsApi {
         @Query("page") page: Int
     ) : PersonsResponseDTO
 
+    @GET("people")
+    suspend fun getSearchPersons(
+        @Query("search") search: String
+    ) : PersonsResponseDTO
+
+    @GET("films")
+    suspend fun getSearchMovies(
+        @Query("search") search: String
+    ) : MoviesResponseDTO
+
     @GET("films")
     suspend fun getMovies(
         @Query("page") page: Int
