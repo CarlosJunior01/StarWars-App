@@ -25,7 +25,14 @@
         android:id="@+id/searchFragment"
         android:name="com.carlosjunior.starwarsapp.presentation.fragments.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search"/>
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_detailsPersonsFragment"
+            app:destination="@id/detailsPersonsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailsMoviesFragment"
+            app:destination="@id/detailsMoviesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detailsPersonsFragment"
@@ -34,7 +41,7 @@
         tools:layout="@layout/fragment_persons_details">
         <argument
             android:name="Persons"
-            app:argType="com.carlosjunior.core.domain.model.Persons" />
+            app:argType="com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject" />
         <argument
             android:name="Position"
             app:argType="integer" />
@@ -47,7 +54,7 @@
         tools:layout="@layout/fragment_movies_details">
         <argument
             android:name="Movies"
-            app:argType="com.carlosjunior.core.domain.model.Movies" />
+            app:argType="com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject" />
         <argument
             android:name="Position"
             app:argType="integer" />
