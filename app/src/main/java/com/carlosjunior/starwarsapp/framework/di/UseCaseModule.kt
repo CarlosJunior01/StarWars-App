@@ -1,9 +1,6 @@
 package com.carlosjunior.starwarsapp.framework.di
 
-import com.carlosjunior.core.usecase.GetMoviesUseCase
-import com.carlosjunior.core.usecase.GetMoviesUseCaseImpl
-import com.carlosjunior.core.usecase.GetPersonsUseCase
-import com.carlosjunior.core.usecase.GetPersonsUseCaseImpl
+import com.carlosjunior.core.usecase.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,6 +12,12 @@ interface UseCaseModule {
 
     @Binds
     fun bindPersonsUseCase(useCase: GetPersonsUseCaseImpl): GetPersonsUseCase
+
+    @Binds
+    fun bindSearchPersonsUseCase(useCase: GetSearchPersonUseCaseImpl): GetSearchPersonsUseCase
+
+    @Binds
+    fun bindSearchMoviesUseCase(useCase: GetSearchMoviesUseCaseImpl): GetSearchMoviesUseCase
 
     @Binds
     fun bindMoviesUseCase(useCase: GetMoviesUseCaseImpl): GetMoviesUseCase
