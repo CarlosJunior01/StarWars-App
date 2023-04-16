@@ -15,13 +15,13 @@
     <string name="height">Height: %s</string>
     <string name="birth_year">Birth Year: %s</string>
     <string name="hair_color">Hair color: %s</string>
-    <string name="share_person">"Person Name: %s \n\n Link Person: %s</string>
+    <string name="share_person">"Person Name: %s\n\n Link Person: %s</string>
 
     <!-- Details Movie Screen -->
     <string name="director">Director by %s</string>
     <string name="producer">Producer by %s</string>
     <string name="release_date">Release Date: %s</string>
-    <string name="share_movie">"Movie Name: %s \n\n Link Movie: %s \n\n Description Movie: %s</string>
+    <string name="share_movie">"Movie Name: %s\n\n Link Movie: %s\n\n Description Movie: %s</string>
 
     <!-- Details Movie Screen -->
     <string name="button_persons">Personagens</string>
