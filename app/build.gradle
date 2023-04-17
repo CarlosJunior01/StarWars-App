@@ -47,6 +47,7 @@ ext {
     hilt_version = "2.41"
     fragment_version = '1.4.1'
     nav_version = "2.4.1"
+    room_version = "2.5.1"
 }
 
 dependencies {
@@ -80,6 +81,11 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     // Unit tests
     testImplementation 'junit:junit:4.13.2'
