@@ -7,7 +7,8 @@
     <string name="generic_error_try_again">Tentar Novamente</string>
 
     <!-- Home Screen -->
-    <string name="last_viewed_description">Últimos visualizados</string>
+    <string name="last_persons_viewed_description">Últimos personagens visualizados</string>
+    <string name="last_movies_viewed_description">Últimos filmes visualizados</string>
 
     <!-- Details Person Screen -->
     <string name="add_list">Add List</string>
@@ -22,6 +23,8 @@
     <string name="producer">Producer by %s</string>
     <string name="release_date">Release Date: %s</string>
     <string name="share_movie">"Movie Name: %s\n\n Link Movie: %s\n\n Description Movie: %s</string>
+    <string name="favorite_successfully">"Added"</string>
+
 
     <!-- Details Movie Screen -->
     <string name="button_persons">Personagens</string>
