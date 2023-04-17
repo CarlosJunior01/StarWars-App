@@ -10,13 +10,22 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.carlosjunior.starwarsapp.R
+import com.carlosjunior.starwarsapp.database.AppDatabase
+import com.carlosjunior.starwarsapp.database.dao.FavoritePersonDAO
+import com.carlosjunior.starwarsapp.database.model.FavoritePerson
 import com.carlosjunior.starwarsapp.databinding.FragmentPersonsDetailsBinding
+import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsPersonsFragment : Fragment() {
 
     private val arguments: DetailsPersonsFragmentArgs by navArgs()
+    private lateinit var appDatabase: AppDatabase
+    private lateinit var favoritePersonDAO: FavoritePersonDAO
     private lateinit var binding: FragmentPersonsDetailsBinding
 
     override fun onCreateView(
@@ -27,6 +36,7 @@ class DetailsPersonsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initDatabase()
         setupViews(view)
         clickListeners()
     }
@@ -48,10 +58,34 @@ class DetailsPersonsFragment : Fragment() {
     }
 
     private fun clickListeners() {
-        with(binding) {
-            btnReturnButton.setOnClickListener { navigateHomeFragment() }
+        with(binding) { btnReturnButton.setOnClickListener { navigateHomeFragment() }
             btnShareButton.setOnClickListener { shareAction() }
             searchBarContainer.setOnClickListener { navigateSearchFragment() }
+            imgAddFavorite.setOnClickListener {
+                insertFavoritePerson(arguments.persons)
+                txtFavorite.text = getString(R.string.favorite_successfully)
+            }
+        }
+    }
+
+    private fun initDatabase() {
+        this.appDatabase = AppDatabase.getInstance(requireContext())
+        this.favoritePersonDAO = appDatabase.favoritePersonDao()
+    }
+
+    private fun insertFavoritePerson(personVO: PersonsViewObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            favoritePersonDAO.insert(
+                FavoritePerson(
+                    name = personVO.name.toString(),
+                    height = personVO.height.toString(),
+                    hairColor = personVO.hairColor.toString(),
+                    skinColor = personVO.skinColor.toString(),
+                    birthYear = personVO.birthYear.toString(),
+                    gender = personVO.gender.toString(),
+                    url = personVO.url.toString()
+                )
+            )
         }
     }
 
