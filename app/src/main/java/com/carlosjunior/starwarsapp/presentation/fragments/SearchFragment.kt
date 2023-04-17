@@ -14,6 +14,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjunior.starwarsapp.R
+import com.carlosjunior.starwarsapp.database.AppDatabase
+import com.carlosjunior.starwarsapp.database.dao.MovieDAO
+import com.carlosjunior.starwarsapp.database.dao.PersonDAO
+import com.carlosjunior.starwarsapp.database.model.Movie
+import com.carlosjunior.starwarsapp.database.model.Person
 import com.carlosjunior.starwarsapp.databinding.FragmentSearchBinding
 import com.carlosjunior.starwarsapp.presentation.adapters.searchMovies.SearchMoviesAdapter
 import com.carlosjunior.starwarsapp.presentation.adapters.searchPersons.SearchPersonsAdapter
@@ -22,12 +27,18 @@ import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import com.carlosjunior.starwarsapp.presentation.viewmodels.HomeViewModel
 import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var recyclerView: RecyclerView
+    private lateinit var appDatabase: AppDatabase
+    private lateinit var personDAO: PersonDAO
+    private lateinit var movieDAO: MovieDAO
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -38,6 +49,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initDatabase()
         clickListeners()
     }
 
@@ -48,7 +60,7 @@ class SearchFragment : Fragment() {
             layoutManager = GridLayoutManager(context, SPAN_COUNT)
             adapter = SearchPersonsAdapter(persons) { persons, position ->
                 navigatePersonsDetailsFragment(persons, position)
-                Toast.makeText(context, persons.name, Toast.LENGTH_SHORT).show()
+                insertPerson(persons)
             }
         }
     }
@@ -60,6 +72,7 @@ class SearchFragment : Fragment() {
             layoutManager = GridLayoutManager(context, SPAN_COUNT)
             adapter = SearchMoviesAdapter(movies) { movies, position ->
                 navigateMoviesDetailsFragment(movies, position)
+                insertMovie(movies)
             }
         }
     }
@@ -101,6 +114,44 @@ class SearchFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun initDatabase() {
+        this.appDatabase = AppDatabase.getInstance(requireContext())
+        this.personDAO = appDatabase.personDao()
+        this.movieDAO = appDatabase.movieDao()
+    }
+
+    private fun insertPerson(personVO: PersonsViewObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            personDAO.insert(
+                Person(
+                    name = personVO.name.toString(),
+                    height = personVO.height.toString(),
+                    hairColor = personVO.hairColor.toString(),
+                    skinColor = personVO.skinColor.toString(),
+                    birthYear = personVO.birthYear.toString(),
+                    gender = personVO.gender.toString(),
+                    url = personVO.url.toString()
+                )
+            )
+        }
+    }
+
+    private fun insertMovie(movieVO: MoviesViewObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            movieDAO.insert(
+                Movie(
+                    title = movieVO.title.toString(),
+                    episodeId = movieVO.episodeId.toString().toInt(),
+                    openingCrawl = movieVO.toString(),
+                    director = movieVO.director.toString(),
+                    producer = movieVO.producer.toString(),
+                    releaseDate = movieVO.releaseDate.toString(),
+                    url = movieVO.url.toString()
+                )
+            )
         }
     }
 
