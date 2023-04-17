@@ -87,10 +87,10 @@
             tools:listitem="@layout/recycler_person_item_list" />
 
         <TextView
-            android:id="@+id/text_last_viewed"
+            android:id="@+id/text_last_persons_viewed"
             style="@style/TextAppearanceBold16"
             android:layout_marginStart="@dimen/size_16_dp"
-            android:text="@string/last_viewed_description"
+            android:text="@string/last_persons_viewed_description"
             android:textColor="@color/gray_7070"
             android:textStyle="bold"
             android:visibility="invisible"
@@ -98,16 +98,41 @@
             app:layout_constraintTop_toBottomOf="@+id/recycler_view_movies" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_last_viewed"
+            android:id="@+id/recycler_view_last_persons_viewed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="@dimen/size_2_dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_last_viewed"
+            app:layout_constraintTop_toBottomOf="@+id/text_last_persons_viewed"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_person_item_list" />
+
+        <TextView
+            android:id="@+id/text_last_movies_viewed"
+            style="@style/TextAppearanceBold16"
+            android:layout_marginStart="@dimen/size_16_dp"
+            android:text="@string/last_movies_viewed_description"
+            android:textColor="@color/gray_7070"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_last_persons_viewed" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_last_movies_viewed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/size_2_dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_last_movies_viewed"
             tools:itemCount="2"
             tools:listitem="@layout/recycler_person_item_list" />
 
