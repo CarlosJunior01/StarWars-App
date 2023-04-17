@@ -1,4 +1,4 @@
-package com.carlosjunior.starwarsapp.presentation.adapters.searchPersons
+package com.carlosjunior.starwarsapp.presentation.adapters.lastViewed
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,24 +10,22 @@ import com.bumptech.glide.Glide
 import com.carlosjunior.starwarsapp.R
 import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 
-class SearchPersonsAdapter(
+class LastViewedAdapter(
     private val persons: List<PersonsViewObject>,
-    private val onItemClickListener: ((personVO: PersonsViewObject, Int) -> Unit)
-) : RecyclerView.Adapter<SearchPersonsAdapter.SearchPersonsViewHolder>() {
+    private val onItemClickListener: ((persons: PersonsViewObject, Int) -> Unit)
+) : RecyclerView.Adapter<LastViewedAdapter.LastViewedViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SearchPersonsAdapter.SearchPersonsViewHolder {
+    ): LastViewedAdapter.LastViewedViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.recycler_person_item_list, parent, false)
 
-        return SearchPersonsViewHolder(view, onItemClickListener)
+        return LastViewedViewHolder(view, onItemClickListener)
     }
 
-    override fun onBindViewHolder(
-        holder: SearchPersonsAdapter.SearchPersonsViewHolder, position: Int
-    ) {
+    override fun onBindViewHolder(holder: LastViewedViewHolder, position: Int) {
         val persons = persons[position]
 
         holder.apply {
@@ -52,8 +50,8 @@ class SearchPersonsAdapter(
     private fun getItemListPosition(url: String?) =
         url?.drop(TWENTY_NINE)?.replace(OLD_FORMAT, NEW_FORMAT).toString().toInt() - NUMBER_ONE
 
-    inner class SearchPersonsViewHolder(
-        itemView: View, private val onItemClickListener: ((personsVO: PersonsViewObject, position: Int) -> Unit)
+    inner class LastViewedViewHolder(
+        itemView: View, private val onItemClickListener: ((personVO: PersonsViewObject, position: Int) -> Unit)
     ) : RecyclerView.ViewHolder(itemView) {
         val personName: TextView = itemView.findViewById(R.id.person_name)
         val personYear: TextView = itemView.findViewById(R.id.person_year)
