@@ -10,13 +10,22 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.carlosjunior.starwarsapp.R
+import com.carlosjunior.starwarsapp.database.AppDatabase
+import com.carlosjunior.starwarsapp.database.dao.FavoriteMovieDAO
+import com.carlosjunior.starwarsapp.database.model.FavoriteMovie
 import com.carlosjunior.starwarsapp.databinding.FragmentMoviesDetailsBinding
+import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsMoviesFragment : Fragment() {
 
     private val arguments: DetailsMoviesFragmentArgs by navArgs()
+    private lateinit var appDatabase: AppDatabase
+    private lateinit var favoriteMovieDAO: FavoriteMovieDAO
     private lateinit var binding: FragmentMoviesDetailsBinding
 
     override fun onCreateView(
@@ -27,6 +36,7 @@ class DetailsMoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initDatabase()
         setupViews(view)
         clickListeners()
     }
@@ -52,6 +62,31 @@ class DetailsMoviesFragment : Fragment() {
             btnReturnButton.setOnClickListener { navigateHomeFragment() }
             btnShareButton.setOnClickListener { shareAction() }
             searchBarContainer.setOnClickListener { navigateSearchFragment() }
+            imgAddFavorite.setOnClickListener {
+                insertFavoritePerson(arguments.movies)
+                txtFavorite.text = getString(R.string.favorite_successfully)
+            }
+        }
+    }
+
+    private fun initDatabase() {
+        this.appDatabase = AppDatabase.getInstance(requireContext())
+        this.favoriteMovieDAO = appDatabase.favoriteMovieDao()
+    }
+
+    private fun insertFavoritePerson(movieVO: MoviesViewObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteMovieDAO.insert(
+                FavoriteMovie(
+                    title = movieVO.title.toString(),
+                    episodeId = movieVO.episodeId.toString().toInt(),
+                    openingCrawl = movieVO.openingCrawl.toString(),
+                    director = movieVO.director.toString(),
+                    producer = movieVO.producer.toString(),
+                    releaseDate = movieVO.releaseDate.toString(),
+                    url = movieVO.url.toString()
+                )
+            )
         }
     }
 
