@@ -6,7 +6,7 @@ import com.carlosjunior.starwarsapp.database.model.Person
 @Dao
 interface PersonDAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(person: Person)
 
     @Query("SELECT*FROM Person")

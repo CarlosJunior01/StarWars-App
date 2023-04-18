@@ -1,9 +1,10 @@
 package com.carlosjunior.starwarsapp.database.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity (indices = [Index(value = ["name"], unique = true)])
 data class Person(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

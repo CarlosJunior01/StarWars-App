@@ -2,6 +2,7 @@ package com.carlosjunior.starwarsapp.presentation.model
 
 import android.os.Parcelable
 import com.carlosjunior.core.domain.model.Movies
+import com.carlosjunior.starwarsapp.database.model.FavoriteMovie
 import com.carlosjunior.starwarsapp.database.model.Movie
 import kotlinx.parcelize.Parcelize
 
@@ -27,6 +28,16 @@ data class MoviesViewObject(
     )
 
     constructor(movies: Movie) : this(
+        title = movies.title,
+        episodeId = movies.episodeId,
+        openingCrawl = movies.openingCrawl,
+        director = movies.director,
+        producer = movies.producer,
+        releaseDate = movies.releaseDate,
+        url = movies.url
+    )
+
+    constructor(movies: FavoriteMovie) : this(
         title = movies.title,
         episodeId = movies.episodeId,
         openingCrawl = movies.openingCrawl,

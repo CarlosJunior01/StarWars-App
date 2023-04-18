@@ -1,9 +1,10 @@
 package com.carlosjunior.starwarsapp.database.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity (indices = [Index(value = ["title"], unique = true)])
 data class Movie(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

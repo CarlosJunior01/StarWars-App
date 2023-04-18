@@ -6,7 +6,7 @@ import com.carlosjunior.starwarsapp.database.model.FavoritePerson
 @Dao
 interface FavoritePersonDAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(favoritePerson: FavoritePerson)
 
     @Query("SELECT*FROM FavoritePerson")
