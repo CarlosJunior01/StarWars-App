@@ -26,8 +26,8 @@ import com.carlosjunior.starwarsapp.presentation.adapters.searchPersons.SearchPe
 import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import com.carlosjunior.starwarsapp.presentation.viewmodels.HomeViewModel
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StateMovieResponse.StateMoviesSuccess
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsSuccess
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StateMovieResponse.*
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -94,8 +94,8 @@ class HomeFragment : Fragment() {
             viewModel.screenState.collect { state ->
                 when (state) {
                     is StatePersonsSuccess -> personsAdapter.submitData(state.it)
-                    else -> Toast.makeText(requireContext(), ERROR_MESSAGE, Toast.LENGTH_SHORT)
-                        .show()
+                    is StatePersonsError -> Toast.makeText(requireContext(), ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
+                    else -> {}
                 }
             }
         }
@@ -105,11 +105,8 @@ class HomeFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.screenMovieState.collect { state ->
                 when (state) {
-                    is StateMoviesSuccess -> {
-                        moviesAdapter.submitData(state.it)
-                    }
-                    else -> Toast.makeText(requireContext(), ERROR_MESSAGE, Toast.LENGTH_SHORT)
-                        .show()
+                    is StateMoviesSuccess -> moviesAdapter.submitData(state.it)
+                    else -> {}
                 }
             }
         }
@@ -171,6 +168,16 @@ class HomeFragment : Fragment() {
 
     private fun clickListeners() {
         binding.homeScreen.searchBarContainer.setOnClickListener { navigateSearchFragment() }
+        binding.homeScreen.imgFavorite.setOnClickListener { navigateFavoriteFragment() }
+        binding.errorScreen.btnTryAgain.setOnClickListener { onRetry() }
+    }
+
+    private fun onRetry() {
+        viewModel.personsPagingData(query = HomeViewModel.EMPTY)
+        viewModel.moviesPagingData(query = HomeViewModel.EMPTY)
+        observeStateLoad()
+        collectPersonsStateLoad()
+        collectMoviesStateLoad()
     }
 
     private fun initDatabase() {
@@ -244,6 +251,9 @@ class HomeFragment : Fragment() {
 
     private fun navigateSearchFragment() =
         findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+
+    private fun navigateFavoriteFragment() =
+        findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
 
     private fun navigatePersonsDetailsFragment(persons: PersonsViewObject, pos: Int) =
         findNavController()

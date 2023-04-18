@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +24,7 @@ import com.carlosjunior.starwarsapp.presentation.adapters.searchPersons.SearchPe
 import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import com.carlosjunior.starwarsapp.presentation.viewmodels.HomeViewModel
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -81,17 +80,15 @@ class SearchFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.screenState.collect { state ->
                 when (state) {
-                    is StatePersonsResponse.StatePersonsLoading -> {
+                    is StatePersonsLoading -> {
                         binding.recyclerViewSearchMovies.visibility = View.GONE
                     }
-                    is StatePersonsResponse.StateSearchPersonsSuccess -> {
+                    is StateSearchPersonsSuccess -> {
                         binding.recyclerViewSearchPersons.visibility = View.VISIBLE
                         initPersonsAdapter(state.personsVO)
                     }
-                    else -> {
-                        binding.recyclerViewSearchPersons.visibility = View.GONE
-                        Toast.makeText(requireContext(), ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-                    }
+                    is StatePersonsError -> binding.recyclerViewSearchMovies.visibility = View.GONE
+                    else ->  binding.recyclerViewSearchPersons.visibility = View.GONE
                 }
             }
         }
@@ -101,17 +98,15 @@ class SearchFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.screenState.collect { state ->
                 when (state) {
-                    is StatePersonsResponse.StatePersonsLoading -> {
+                    is StatePersonsLoading -> {
                         binding.recyclerViewSearchPersons.visibility = View.GONE
                     }
-                    is StatePersonsResponse.StateSearchMoviesSuccess -> {
+                    is StateSearchMoviesSuccess -> {
                         binding.recyclerViewSearchMovies.visibility = View.VISIBLE
                         initMoviesAdapter(state.moviesVO)
                     }
-                    else -> {
-                        binding.recyclerViewSearchMovies.visibility = View.GONE
-                        Toast.makeText(requireContext(), ERROR_MESSAGE, Toast.LENGTH_SHORT).show()
-                    }
+                    is StatePersonsError -> binding.recyclerViewSearchMovies.visibility = View.GONE
+                    else -> binding.recyclerViewSearchMovies.visibility = View.GONE
                 }
             }
         }
@@ -208,7 +203,6 @@ class SearchFragment : Fragment() {
 
     companion object {
         private const val SPAN_COUNT = 2
-        private const val TEXT_LENGTH = 3
-        private const val ERROR_MESSAGE = ""
+        private const val TEXT_LENGTH = 2
     }
 }
