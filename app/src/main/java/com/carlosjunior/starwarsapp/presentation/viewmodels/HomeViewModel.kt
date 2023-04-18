@@ -13,7 +13,11 @@ import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import com.carlosjunior.starwarsapp.presentation.viewmodels.StateMovieResponse.StateMoviesLoading
 import com.carlosjunior.starwarsapp.presentation.viewmodels.StateMovieResponse.StateMoviesSuccess
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.*
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsError
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsLoading
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsSuccess
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StateSearchMoviesSuccess
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StateSearchPersonsSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

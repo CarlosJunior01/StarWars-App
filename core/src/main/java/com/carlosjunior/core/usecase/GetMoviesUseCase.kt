@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.carlosjunior.core.data.repository.MoviesRepository
 import com.carlosjunior.core.domain.model.Movies
-import com.carlosjunior.core.usecase.GetMoviesUseCase.*
+import com.carlosjunior.core.usecase.GetMoviesUseCase.GetMoviesParams
 import com.carlosjunior.core.usecase.base.PagingUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

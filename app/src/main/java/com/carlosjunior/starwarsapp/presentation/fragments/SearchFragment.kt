@@ -24,7 +24,10 @@ import com.carlosjunior.starwarsapp.presentation.adapters.searchPersons.SearchPe
 import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
 import com.carlosjunior.starwarsapp.presentation.viewmodels.HomeViewModel
-import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.*
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsError
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StatePersonsLoading
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StateSearchMoviesSuccess
+import com.carlosjunior.starwarsapp.presentation.viewmodels.StatePersonsResponse.StateSearchPersonsSuccess
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
