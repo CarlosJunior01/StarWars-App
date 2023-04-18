@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
         moviesPagingData(query = EMPTY)
     }
 
-    private fun personsPagingData(query: String) {
+    fun personsPagingData(query: String) {
         viewModelScope.launch {
             getPersonsUseCase(
                 GetPersonsUseCase.GetPersonsParams(query, getPageConfig())
@@ -74,7 +74,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun moviesPagingData(query: String) {
+    fun moviesPagingData(query: String) {
         viewModelScope.launch {
             getMoviesUseCase(
                 GetMoviesUseCase.GetMoviesParams(query, getPageConfig())
@@ -88,7 +88,7 @@ class HomeViewModel @Inject constructor(
     private fun getPageConfig() = PagingConfig(pageSize = SIZE_10)
 
     companion object {
-        private const val EMPTY = ""
+        const val EMPTY = ""
         private const val SIZE_10 = 10
     }
 }
