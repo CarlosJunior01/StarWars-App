@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsMoviesFragment"
             app:destination="@id/detailsMoviesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
 
     <fragment
@@ -73,6 +76,22 @@
         <argument
             android:name="Position"
             app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.carlosjunior.starwarsapp.presentation.fragments.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailsPersonsFragment"
+            app:destination="@id/detailsPersonsFragment" />
+        <action
+            android:id="@+id/action_favoriteFragmentt_to_detailsMoviesFragment"
+            app:destination="@id/detailsMoviesFragment" />
     </fragment>
 
 </navigation>
