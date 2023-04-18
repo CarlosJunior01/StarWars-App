@@ -16,4 +16,5 @@
     <color name="gray_1212">#121212</color>
     <color name="alpha_gray_1212">#60121212</color>
     <color name="gray_alpha_20">#20202020</color>
+    <color name="alpha_100">#00000000</color>
 </resources>
