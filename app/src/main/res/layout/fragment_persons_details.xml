@@ -18,6 +18,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/btn_return_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8_dp"
+        android:contentDescription="@string/accessibility_return_button"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_wars_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star_wars_logo"
+        app:srcCompat="@drawable/ic_arrow_left" />
+
+    <ImageView
+        android:id="@+id/btn_share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_16_dp"
+        android:contentDescription="@string/accessibility_share_button"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_wars_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star_wars_logo"
+        app:srcCompat="@drawable/ic_share_24" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/search_bar_container"
         style="@style/SearchButtonDefault"
@@ -54,176 +76,133 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_img_cover"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/size_300_dp"
-        android:layout_margin="@dimen/size_16_dp"
-        app:cardCornerRadius="@dimen/size_8_dp"
-        app:cardElevation="@dimen/size_8_dp"
-        android:backgroundTint="@color/gray_1212"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_dp"
+        android:layout_marginTop="@dimen/size_16_dp"
+        android:background="@color/gray_2020"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_container">
 
-        <ImageView
-            android:id="@+id/img_cover"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/size_8_dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_foreground"
-            android:importantForAccessibility="no" />
+            android:layout_marginBottom="@dimen/size_32_dp"
+            android:background="@color/gray_2020">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_line_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/size_16_dp" />
 
-        </ScrollView>
-    </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_line_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/size_16_dp" />
 
-    <ImageView
-        android:id="@+id/btn_return_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8_dp"
-        android:layout_marginTop="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_return_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_left" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_img_cover"
+                android:layout_width="@dimen/size_0_dp"
+                android:layout_height="@dimen/size_300_dp"
+                android:layout_marginVertical="@dimen/size_16_dp"
+                android:backgroundTint="@color/gray_1212"
+                app:cardCornerRadius="@dimen/size_8_dp"
+                app:cardElevation="@dimen/size_8_dp"
+                app:layout_constraintEnd_toStartOf="@+id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/guide_line_start"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/btn_share_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_share_button"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_return_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_return_button"
-        app:srcCompat="@drawable/ic_share_24" />
+                <ImageView
+                    android:id="@+id/img_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/size_8_dp"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher_foreground" />
 
-    <ImageView
-        android:id="@+id/img_add_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_favorite_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_name"
-        app:srcCompat="@drawable/ic_add_circle" />
+            </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/txt_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:importantForAccessibility="no"
-        android:text="@string/add_list"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/img_add_favorite"
-        app:layout_constraintStart_toStartOf="@+id/img_add_favorite"
-        app:layout_constraintTop_toBottomOf="@+id/img_add_favorite" />
+            <ImageView
+                android:id="@+id/img_add_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/accessibility_favorite_button"
+                android:elevation="@dimen/size_8_dp"
+                app:layout_constraintStart_toStartOf="@+id/guide_line_start"
+                app:layout_constraintTop_toTopOf="@+id/gender_name"
+                app:srcCompat="@drawable/ic_add_circle" />
 
-    <TextView
-        android:id="@+id/person_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_16_dp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_24_sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_img_cover"
-        tools:text="Luke Skywalker" />
+            <TextView
+                android:id="@+id/txt_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/size_8_dp"
+                android:importantForAccessibility="no"
+                android:text="@string/add_list"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/img_add_favorite"
+                app:layout_constraintStart_toStartOf="@+id/img_add_favorite"
+                app:layout_constraintTop_toBottomOf="@+id/img_add_favorite" />
 
-    <TextView
-        android:id="@+id/gender_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_32_dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_blue"
-        android:textSize="@dimen/text_18_sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/img_add_favorite"
-        app:layout_constraintTop_toTopOf="@+id/img_add_favorite"
-        tools:text="male" />
+            <TextView
+                android:id="@+id/person_name"
+                style="@style/TextAppearanceShadow24"
+                app:layout_constraintEnd_toStartOf="@+id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/guide_line_start"
+                app:layout_constraintTop_toBottomOf="@+id/card_img_cover"
+                tools:text="Luke Skywalker" />
 
-    <TextView
-        android:id="@+id/hair_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/size_8_dp"
-        android:layout_marginStart="@dimen/size_16_dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_blue"
-        android:textSize="@dimen/text_18_sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/gender_name"
-        app:layout_constraintStart_toEndOf="@+id/gender_name"
-        app:layout_constraintTop_toTopOf="@+id/gender_name"
-        tools:text="blond" />
+            <TextView
+                android:id="@+id/gender_name"
+                style="@style/TextAppearanceShadow16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_32_dp"
+                android:textColor="@color/aqua_blue"
+                app:layout_constraintStart_toEndOf="@+id/img_add_favorite"
+                app:layout_constraintTop_toBottomOf="@+id/person_name"
+                tools:text="Gender: male" />
 
-    <TextView
-        android:id="@+id/height_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_16_dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_blue"
-        android:textSize="@dimen/text_18_sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/gender_name"
-        app:layout_constraintTop_toBottomOf="@+id/gender_name"
-        tools:text="172" />
+            <TextView
+                android:id="@+id/height_value"
+                style="@style/TextAppearanceShadow16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/aqua_blue"
+                app:layout_constraintStart_toStartOf="@+id/gender_name"
+                app:layout_constraintTop_toBottomOf="@+id/gender_name"
+                tools:text="Height: 172" />
 
-    <TextView
-        android:id="@+id/year_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/size_8_dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_blue"
-        android:textSize="@dimen/text_18_sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/height_value"
-        app:layout_constraintStart_toStartOf="@+id/hair_color"
-        app:layout_constraintTop_toTopOf="@+id/height_value"
-        tools:text="19BBY" />
+            <TextView
+                android:id="@+id/hair_color"
+                style="@style/TextAppearanceShadow16"
+                android:layout_width="@dimen/size_0_dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/aqua_green"
+                app:layout_constraintEnd_toStartOf="@+id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/height_value"
+                app:layout_constraintTop_toBottomOf="@+id/height_value"
+                tools:text="Hair Color: Blond" />
 
+            <TextView
+                android:id="@+id/year_date"
+                style="@style/TextAppearanceShadow16"
+                android:layout_width="@dimen/size_0_dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/aqua_green"
+                app:layout_constraintEnd_toStartOf="@+id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/hair_color"
+                app:layout_constraintTop_toBottomOf="@+id/hair_color"
+                tools:text="Birth Year: 19BBY" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_2020">
+    android:background="@color/gray_2020"
+    android:fillViewport="true">
 
     <ImageView
         android:id="@+id/img_star_wars_logo"
@@ -17,6 +18,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_return_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_8_dp"
+        android:contentDescription="@string/accessibility_return_button"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_wars_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star_wars_logo"
+        app:srcCompat="@drawable/ic_arrow_left" />
+
+    <ImageView
+        android:id="@+id/btn_share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_16_dp"
+        android:contentDescription="@string/accessibility_share_button"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_wars_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star_wars_logo"
+        app:srcCompat="@drawable/ic_share_24" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/search_bar_container"
@@ -46,7 +69,6 @@
             android:id="@+id/text_search_bar"
             style="@style/TextAppearanceBold16"
             android:text="@string/search_hint_persons_description"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_search_bar"
@@ -54,176 +76,123 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_img_cover"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/size_300_dp"
-        android:layout_margin="@dimen/size_16_dp"
-        app:cardCornerRadius="@dimen/size_8_dp"
-        app:cardElevation="@dimen/size_8_dp"
-        android:backgroundTint="@color/gray_1212"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0_dp"
+        android:layout_marginTop="@dimen/size_16_dp"
+        android:background="@color/gray_2020"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_container">
 
-        <ImageView
-            android:id="@+id/img_cover"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/size_8_dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_foreground"
-            android:importantForAccessibility="no" />
-    </androidx.cardview.widget.CardView>
+            android:background="@color/gray_2020">
 
-    <ImageView
-        android:id="@+id/btn_return_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8_dp"
-        android:layout_marginTop="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_return_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_left" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_line_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/size_16_dp" />
 
-    <ImageView
-        android:id="@+id/btn_share_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_share_button"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_return_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_return_button"
-        app:srcCompat="@drawable/ic_share_24" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_line_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/size_16_dp" />
 
-    <ImageView
-        android:id="@+id/img_add_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_16_dp"
-        android:contentDescription="@string/accessibility_favorite_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_name"
-        app:srcCompat="@drawable/ic_add_circle" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_img_cover"
+                android:layout_width="@dimen/size_0_dp"
+                android:layout_height="@dimen/size_300_dp"
+                android:backgroundTint="@color/gray_1212"
+                app:cardCornerRadius="@dimen/size_8_dp"
+                app:cardElevation="@dimen/size_8_dp"
+                app:layout_constraintEnd_toEndOf="@id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/guide_line_start"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/txt_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:importantForAccessibility="no"
-        android:text="@string/add_list"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/img_add_favorite"
-        app:layout_constraintStart_toStartOf="@+id/img_add_favorite"
-        app:layout_constraintTop_toBottomOf="@+id/img_add_favorite" />
+                <ImageView
+                    android:id="@+id/img_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/size_8_dp"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher_foreground" />
+            </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/title_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_16_dp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_24_sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_img_cover"
-        tools:text="A New Hope" />
+            <ImageView
+                android:id="@+id/img_add_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/accessibility_favorite_button"
+                app:layout_constraintStart_toStartOf="@+id/guide_line_start"
+                app:layout_constraintTop_toBottomOf="@+id/title_name"
+                app:srcCompat="@drawable/ic_add_circle" />
 
-    <TextView
-        android:id="@+id/director_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_green"
-        android:textSize="@dimen/text_18_sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/img_add_favorite"
-        tools:text="Director by George Lucas" />
+            <TextView
+                android:id="@+id/txt_favorite"
+                style="@style/TextAppearanceDefaultBold"
+                android:importantForAccessibility="no"
+                android:text="@string/add_list"
+                app:layout_constraintEnd_toEndOf="@+id/img_add_favorite"
+                app:layout_constraintStart_toStartOf="@+id/img_add_favorite"
+                app:layout_constraintTop_toBottomOf="@+id/img_add_favorite" />
 
-    <TextView
-        android:id="@+id/producer_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/size_8_dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_blue"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_18_sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/director_name"
-        app:layout_constraintTop_toBottomOf="@+id/director_name"
-        tools:text="Prucer by Gary Kurtz, Rick McCallum" />
+            <TextView
+                android:id="@+id/title_name"
+                style="@style/TextAppearanceShadow24"
+                app:layout_constraintEnd_toStartOf="@+id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/guide_line_start"
+                app:layout_constraintTop_toBottomOf="@+id/card_img_cover"
+                tools:text="A New Hope" />
 
-    <TextView
-        android:id="@+id/release_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/size_8_dp"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-black"
-        android:maxLines="1"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:textColor="@color/aqua_blue"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_18_sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/director_name"
-        app:layout_constraintTop_toBottomOf="@+id/producer_name"
-        tools:text="Release Date - 1977-05-25" />
+            <TextView
+                android:id="@+id/director_name"
+                style="@style/TextAppearanceShadow16"
+                android:layout_width="wrap_content"
+                android:textColor="@color/aqua_green"
+                app:layout_constraintEnd_toEndOf="@id/guide_line_end"
+                app:layout_constraintStart_toEndOf="@+id/img_add_favorite"
+                app:layout_constraintTop_toTopOf="@+id/img_add_favorite"
+                tools:text="Director by George Lucas" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/release_date">
+            <TextView
+                android:id="@+id/producer_name"
+                style="@style/TextAppearanceShadow16"
+                android:textColor="@color/aqua_blue"
+                app:layout_constraintEnd_toEndOf="@id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/director_name"
+                app:layout_constraintTop_toBottomOf="@+id/director_name"
+                tools:text="Producer by Gary Kurtz, Rick McCallum" />
 
-        <TextView
-            android:id="@+id/movie_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/size_16_dp"
-            android:paddingTop="@dimen/size_8_dp"
-            android:fontFamily="sans-serif-black"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:background="@color/alpha_gray_1212"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/release_date"
-            tools:text="It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire..." />
+            <TextView
+                android:id="@+id/release_date"
+                style="@style/TextAppearanceShadow16"
+                android:textColor="@color/aqua_blue"
+                app:layout_constraintEnd_toEndOf="@id/guide_line_end"
+                app:layout_constraintStart_toStartOf="@+id/director_name"
+                app:layout_constraintTop_toBottomOf="@+id/producer_name"
+                tools:text="Release Date - 1977-05-25" />
 
-    </ScrollView>
+            <TextView
+                android:id="@+id/movie_description"
+                style="@style/TextAppearanceBold14"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/size_16_dp"
+                android:background="@color/alpha_gray_1212"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/release_date"
+                tools:text="It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire..." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
