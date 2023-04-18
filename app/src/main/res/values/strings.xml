@@ -10,12 +10,17 @@
     <string name="last_persons_viewed_description">Últimos personagens visualizados</string>
     <string name="last_movies_viewed_description">Últimos filmes visualizados</string>
 
+    <!-- Favorite Screen -->
+    <string name="favorite_persons_description">Personagens favoritos</string>
+    <string name="favorite_movies_description">Filmes favoritos</string>
+    <string name="favorite_empty_description">Não existem itens favoritos no momento.</string>
+
     <!-- Details Person Screen -->
     <string name="add_list">Add List</string>
     <string name="gender">Gender: %s</string>
     <string name="height">Height: %s</string>
     <string name="birth_year">Birth Year: %s</string>
-    <string name="hair_color">Hair color: %s</string>
+    <string name="hair_color">Hair Color: %s</string>
     <string name="share_person">"Person Name: %s\n\n Link Person: %s</string>
 
     <!-- Details Movie Screen -->
@@ -27,11 +32,11 @@
 
 
     <!-- Details Movie Screen -->
-    <string name="button_persons">Personagens</string>
-    <string name="button_movies">Filmes</string>
+    <string name="button_persons">Persons</string>
+    <string name="button_movies">Movies</string>
 
     <!-- Search Screen -->
-    <string name="search_hint_persons_description">Search your characters</string>
+    <string name="search_hint_persons_description">Search your persons</string>
     <string name="search_hint_movies_description">Search your movies</string>
 
     <!-- Item Load More State -->
