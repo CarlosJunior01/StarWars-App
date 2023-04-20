@@ -45,6 +45,7 @@ class FavoriteFragment : Fragment() {
 
     private fun clickListeners() {
         binding.btnReturnButton.setOnClickListener { navigateHomeFragment() }
+        binding.searchBarContainer.setOnClickListener { navigateSearchFragment() }
     }
 
     private fun initDatabase() {
@@ -107,6 +108,9 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun navigateHomeFragment() = findNavController().navigate(R.id.action_favoriteFragment_to_homeFragment)
+
+    private fun navigateSearchFragment() =
+        findNavController().navigate(R.id.action_favoriteFragment_to_searchFragment)
 
     private fun navigatePersonsDetailsFragment(persons: PersonsViewObject, pos: Int) =
         findNavController().navigate(FavoriteFragmentDirections.actionFavoriteFragmentToDetailsPersonsFragment(persons, pos))

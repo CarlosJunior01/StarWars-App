@@ -87,6 +87,9 @@
             android:id="@+id/action_favoriteFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
+            android:id="@+id/action_favoriteFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
             android:id="@+id/action_favoriteFragment_to_detailsPersonsFragment"
             app:destination="@id/detailsPersonsFragment" />
         <action
