@@ -24,7 +24,7 @@ StarWars movie and people listing application.
 ![image](https://user-images.githubusercontent.com/9430430/233277311-80d2607e-eb85-4531-b572-a059677251c1.png)
 *******
 
-Aplicativo Android Nativo escrito em Kotlin, consumindo api Rest Swapi para listagem de personagens e filmes do universo StarWars, processando resposta com retrofit e tratamento de concorrência com Kotlin Flow, utilizando padrão de arquitetura MVVM + Clean Architecture em multi-módulos, com divisão de responsabilidades e separação de conceitos e desacoplamento de camadas. Injeção de dependência com Dagger Hilt. Cache de imagens e da Api. Funcionalidade compartilhamento, listagem de favoritos e listagem de últimos vistos, tratamento de erroo e retry. Testes unitários e Testes de interface utilizando JUnit, Mockito e Espresso.
+Aplicativo Android Nativo escrito em Kotlin, consumindo api Rest Swapi para listagem de personagens e filmes do universo StarWars, processando resposta com retrofit e tratamento de concorrência com Kotlin Flow, utilizando padrão de arquitetura MVVM + Clean Architecture em multi-módulos, com divisão de responsabilidades e separação de conceitos e desacoplamento de camadas. Injeção de dependência com Dagger Hilt. Cache de imagens e da Api. Funcionalidade de compartilhamento, listagem de favoritos e listagem de últimos vistos, tratamento de erro e retry. Testes unitários e Testes de interface utilizando JUnit, Mockito e Espresso.
 
 **MVVM:** Tem como principal objetivo separar responsabilidades entre Views e Modelos
 Aqui temos a View que responde somente para a ViewModel, e a ViewModel não comunica diretamente com a View. A ViewModel é então uma classe intermediaria entre a View e a Model que conecta uma com a outra fazendo assim intermediação entre ambas.
