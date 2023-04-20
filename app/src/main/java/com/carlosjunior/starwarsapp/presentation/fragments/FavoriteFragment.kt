@@ -16,10 +16,12 @@ import com.carlosjunior.starwarsapp.presentation.adapters.searchMovies.SearchMov
 import com.carlosjunior.starwarsapp.presentation.adapters.searchPersons.SearchPersonsAdapter
 import com.carlosjunior.starwarsapp.presentation.model.MoviesViewObject
 import com.carlosjunior.starwarsapp.presentation.model.PersonsViewObject
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
